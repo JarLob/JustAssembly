@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JustAssembly.Core;
 using JustAssembly.Interfaces;
@@ -94,9 +95,20 @@ namespace JustAssembly.ViewModels
             }
         }
 
+        private void CollapseWithoutChanges(IEnumerable<ItemNodeBase> nodes)
+        {
+            foreach (var node in nodes)
+            {
+                CollapseWithoutChanges(node.Children);
+                if (node.DifferenceDecoration == DifferenceDecoration.NoDifferences)
+                    node.IsExpanded = false;
+            }
+        }
+
         private void OnAssemblyNodeChildrenLoaded(object sender, EventArgs e)
         {
             this.contentLoaded[this.currentNode] = true;
+            CollapseWithoutChanges(nodes);
             GC.Collect();
             GC.WaitForPendingFinalizers();
             GC.Collect();
