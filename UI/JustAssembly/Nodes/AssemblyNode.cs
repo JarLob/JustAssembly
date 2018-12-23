@@ -159,6 +159,7 @@ namespace JustAssembly.Nodes
 																						  SupportedLanguage.CSharp,
 																						  cancellationToken,
                                                                                           shouldDecompileDangerousResources,
+                                                                                          false,
 																						  progressNotifier);
 
 						cancellationToken.ThrowIfCancellationRequested();
@@ -183,6 +184,7 @@ namespace JustAssembly.Nodes
 																						  SupportedLanguage.CSharp,
 																						  cancellationToken,
                                                                                           shouldDecompileDangerousResources,
+                                                                                          false,
 																						  progressNotifier);
 
 						cancellationToken.ThrowIfCancellationRequested();
